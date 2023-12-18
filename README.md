@@ -8,9 +8,8 @@ Mark tasks as completed
 Delete tasks
 Tasks persist between sessions using local storage
 Getting Started
-Clone this repository:
 
-bash
+Clone this repository:
 Copy code
 git clone https://github.com/ssmith024/clone-project.git
 Open index.html in your web browser.
