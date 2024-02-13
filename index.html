@@ -6,6 +6,11 @@
     <link rel="stylesheet" href="bootstrap.min.css">
     <script src="bootstrap.min.js"></script>
     <script src="script.js"></script>
+    <style>
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
 </head>
 <body>
 
@@ -16,15 +21,15 @@
     <form class="form-horizontal" onsubmit="calculateTax(event)">
 
         <div class="form-group">
-            <label class="control-label col-sm-2" for="netIncome">Enter Net Income:</label>
-            <div class="col-sm-10">
-                <input type="number" step="any" id="netIncome" placeholder="Taxable Income" required autofocus>
+            <label class="control-label col-sm-3" for="netIncome">Enter Net Income:</label>
+            <div class="col-sm-9">
+                <input type="number" step="any" id="netIncome" class="form-control" placeholder="Taxable Income" required autofocus>
             </div>
         </div>
-        
+
         <div class="form-group">
-            <label class="control-label col-sm-2" for="filingStatus">Select Filing Status:</label>
-            <div class="col-sm-10">
+            <label class="control-label col-sm-3" for="filingStatus">Select Filing Status:</label>
+            <div class="col-sm-9">
                 <select id="filingStatus" class="form-control">
                     <option value="Single">Single</option>
                     <option value="Married_Jointly">Married Filing Jointly</option>
@@ -35,7 +40,7 @@
         </div>
 
         <div class="form-group"> 
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-3 col-sm-9">
                 <button type="submit" class="btn btn-primary">Calculate Tax</button>
             </div>
         </div>
@@ -55,7 +60,31 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Insert tax table data here -->
+            <tr>
+                <td>Single</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">$0.00 - $9,700.00: 12% $970.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">$9,700.00 - $39,475.00: 22% $4,543.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">$39,475.00 - $84,200.00: 24% $14,382.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">$84,200.00 - $160,725.00: 32% $32,748.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">$160,725.00 - $204,100.00: 35% $46,628.00</td>
+            </tr>
+            <tr>
+                <td colspan="4">Over $204,100.00: 37% $153,798.00</td>
+            </tr>
+            <!-- Repeat the above structure for other filing statuses -->
         </tbody>
     </table>
 
