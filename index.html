@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <title>Income Tax Calculator</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <h3>Income Tax Calculator</h3>
     <form class="form-horizontal" id="taxForm">
         <div class="form-group">
-            <label class="control-label col-sm-2" for="netIncome">Enter Net Income:</label>
-            <div class="col-sm-10">
-                <input type="number" step="any" class="form-control" id="netIncome" placeholder="Taxable Income" required autofocus>
+            <label class="control-label col-sm-4" for="netIncome">Enter Net Income:</label>
+            <div class="col-sm-6">
+                <input type="number" step="any" class="form-control" id="netIncome" placeholder="Net Income" required autofocus>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-2" for="filingStatus">Select Filing Status:</label>
-            <div class="col-sm-10">
+            <label class="control-label col-sm-4" for="filingStatus">Select Filing Status:</label>
+            <div class="col-sm-6">
                 <select class="form-control" id="filingStatus">
                     <option value="Single">Single</option>
                     <option value="Married_Jointly">Married Jointly</option>
@@ -27,7 +32,7 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
+            <div class="col-sm-offset-4 col-sm-6">
                 <button type="submit" class="btn btn-primary">Calculate Tax</button>
             </div>
         </div>
@@ -38,12 +43,40 @@
         <thead>
             <tr>
                 <th>Filing Status</th>
-                <th>Income Range</th>
-                <th>Tax Rate</th>
-                <th>Minimum Tax</th>
+                <th>Income Tax</th>
             </tr>
         </thead>
         <tbody>
+            <tr>
+                <td>Single</td>
+                <td id="singleTax"></td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td id="marriedJointlyTax"></td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td id="marriedSeparatelyTax"></td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td id="headHouseholdTax"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#taxForm').submit(function(event){
+            event.preventDefault();
+            var income = parseFloat($('#netIncome').val());
+            var filingStatus = $('#filingStatus').val();
+            var tax = incomeTax(income, filingStatus);
+            $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toFixed(2) + '</p><p>' + filingStatus + ': $' + tax.toFixed(2) + '</p>');
+        });
             <!-- Rows for Single filing status -->
             <tr>
                 <td>Single</td>
@@ -88,7 +121,7 @@
                 <td>$153,798.00</td>
             </tr>
             <!-- Rows for Married Jointly, Married Separately, and Head of Household statuses -->
-            <!-- Please replace this comment with rows for each of the other filing statuses, following the same structure as the "Single" rows -->
+    
             <tr>
                 <td>Married Jointly</td>
                 <td>Up to $0.00</td>
