@@ -1,19 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>ToDo List</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <title>Static Income Tax Calculator</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <script src="bootstrap.min.js"></script>
+    <script src="script.js"></script> <!-- Add this line to link the external JavaScript file -->
 </head>
 <body>
 
-  <div class="container">
-    <h1>ToDo List</h1>
-    <input type="text" id="taskInput" placeholder="Add new task...">
-    <button onclick="addTask()">Add Task</button>
-    <ul id="taskList"></ul>
-  </div>
+<div class="container">
 
-  <script src="script.js"></script>
+    <h3>Income Tax Calculator</h3>
+
+    <form class="form-horizontal" onsubmit="calculateTax(event)">
+
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="netIncome">Your Net Income:</label>
+            <div class="col-sm-10">
+                <input type="number" step="any" id="netIncome" placeholder="Taxable Income" required autofocus>
+            </div>
+        </div>
+        <div class="form-group"> 
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+
+    </form>
+
+    <div id="results"></div>
+
+    <h3>2024 Tax Tables</h3>
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>Filing Status</th>
+                <th>Income Range</th>
+                <th>Tax Rate</th>
+                <th>Minimum Tax</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Single</td>
+                <td>Up to $9,700</td>
+                <td>10%</td>
+                <td>$0</td>
+            </tr>
+            <!-- Other rows for different filing statuses and income ranges -->
+        </tbody>
+    </table>
+
+</div>
+
 </body>
 </html>
