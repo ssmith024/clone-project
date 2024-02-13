@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Tax Calculator</title>
+    <script>
+        function calculateTax() {
+            const netIncome = parseFloat(document.getElementById('netIncome').value);
+            const filingStatus = document.getElementById('filingStatus').value;
+            let tax = 0;
+
+            // Tax calculation logic based on the selected filing status
+            switch (filingStatus) {
+                case 'single':
+                    // Replace this with the actual tax calculation logic for Single filing status
+                    // This is just a placeholder
+                    tax = netIncome * 0.25; // Example tax calculation
+                    break;
+                case 'married_jointly':
+                    // Add tax calculation logic for Married Jointly filing status
+                    break;
+                case 'married_separately':
+                    // Add tax calculation logic for Married Separately filing status
+                    break;
+                case 'head_of_household':
+                    // Add tax calculation logic for Head of Household filing status
+                    break;
+                default:
+                    break;
+            }
+
+            // Display the result
+            const resultDiv = document.getElementById('results');
+            resultDiv.innerHTML = `<p>Net Income: $${netIncome.toFixed(2)}</p>`;
+            resultDiv.innerHTML += `<p>${filingStatus.replace('_', ' ')}: $${tax.toFixed(2)}</p>`;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h3>Income Tax Calculator</h3>
+        <form id="taxForm">
+            <div>
+                <label for="netIncome">Enter Net Income:</label>
+                <input type="number" id="netIncome" step="any" placeholder="Taxable Income" required autofocus>
+            </div>
+            <div>
+                <label for="filingStatus">Select Filing Status:</label>
+                <select id="filingStatus" required>
+                    <option value="single">Single</option>
+                    <option value="married_jointly">Married Jointly</option>
+                    <option value="married_separately">Married Separately</option>
+                    <option value="head_of_household">Head of Household</option>
+                </select>
+            </div>
+            <button type="button" onclick="calculateTax()">Calculate Tax</button>
+        </form>
+        <div id="results"></div>
+    </div>
+</body>
+</html>
