@@ -25,9 +25,9 @@
             <div class="col-sm-6">
                 <select class="form-control" id="filingStatus">
                     <option value="Single">Single</option>
-                    <option value="Married_Jointly">Married Jointly</option>
-                    <option value="Married_Separately">Married Separately</option>
-                    <option value="Head_Household">Head of Household</option>
+                    <option value="Married Jointly">Married Jointly</option>
+                    <option value="Married Separately">Married Separately</option>
+                    <option value="Head of Household">Head of Household</option>
                 </select>
             </div>
         </div>
