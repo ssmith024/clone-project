@@ -2,61 +2,319 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Income Tax Calculator</title>
-    <script>
-        function calculateTax() {
-            const netIncome = parseFloat(document.getElementById('netIncome').value);
-            const filingStatus = document.getElementById('filingStatus').value;
-            let tax = 0;
-
-            // Tax calculation logic based on the selected filing status
-            switch (filingStatus) {
-                case 'single':
-                    // Replace this with the actual tax calculation logic for Single filing status
-                    // This is just a placeholder
-                    tax = netIncome * 0.25; // Example tax calculation
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <style>
+        .form-group {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>Income Tax Calculator</h3>
+    <form class="form-horizontal" id="taxForm">
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="netIncome">Enter Net Income:</label>
+            <div class="col-sm-6">
+                <input type="number" step="any" class="form-control" id="netIncome" placeholder="Net Income" required autofocus>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-4" for="filingStatus">Select Filing Status:</label>
+            <div class="col-sm-6">
+                <select class="form-control" id="filingStatus">
+                    <option value="Single">Single</option>
+                    <option value="Married_Jointly">Married Jointly</option>
+                    <option value="Married_Separately">Married Separately</option>
+                    <option value="Head_Household">Head of Household</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-6">
+                <button type="submit" class="btn btn-primary">Calculate Tax</button>
+            </div>
+        </div>
+    </form>
+    <div id="results"></div>
+    <h3>2024 Tax Tables</h3>
+    <table class='table table-striped'>
+        <thead>
+            <tr>
+                <th>Filing Status</th>
+                <th>Income Range</th>
+                <th>Tax Rate</th>
+                <th>Minimum Tax</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Rows for Single filing status -->
+            <tr>
+                <td>Single</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>$0.00 - $9,700.00</td>
+                <td>12%</td>
+                <td>$970.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>$9,700.00 - $39,475.00</td>
+                <td>22%</td>
+                <td>$4,543.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>$39,475.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$14,382.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>$84,200.00 - $160,725.00</td>
+                <td>32%</td>
+                <td>$32,748.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>$160,725.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$46,628.00</td>
+            </tr>
+            <tr>
+                <td>Single</td>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$153,798.00</td>
+            </tr>
+            <!-- Rows for Married Jointly, Married Separately, and Head of Household statuses -->
+    
+            <tr>
+                <td>Married Jointly</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>$0.00 - $19,400.00</td>
+                <td>12%</td>
+                <td>$1,940.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>$19,400.00 - $78,950.00</td>
+                <td>22%</td>
+                <td>$9,086.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>$78,950.00 - $168,400.00</td>
+                <td>24%</td>
+                <td>$28,765.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>$168,400.00 - $321,450.00</td>
+                <td>32%</td>
+                <td>$65,497.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>$321,450.00 - $408,200.00</td>
+                <td>35%</td>
+                <td>$93,257.00</td>
+            </tr>
+            <tr>
+                <td>Married Jointly</td>
+                <td>Over $408,200.00</td>
+                <td>37%</td>
+                <td>$164,709.00</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>$0.00 - $9,700.00</td>
+                <td>12%</td>
+                <td>$970.00</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>$9,700.00 - $39,475.00</td>
+                <td>22%</td>
+                <td>$4,543.00</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>$39,475.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$14,382.50</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>$84,200.00 - $160,725.00</td>
+                <td>32%</td>
+                <td>$32,748.50</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>$160,725.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$46,628.50</td>
+            </tr>
+            <tr>
+                <td>Married Separately</td>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$82,354.75</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>$0.00 - $13,850.00</td>
+                <td>12%</td>
+                <td>$1,385.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>$13,850.00 - $52,850.00</td>
+                <td>22%</td>
+                <td>$6,065.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>$52,850.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$12,962.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>$84,200.00 - $160,700.00</td>
+                <td>32%</td>
+                <td>$31,322.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>$160,700.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$45,210.00</td>
+            </tr>
+            <tr>
+                <td>Head of Household</td>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$152,380.00</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#taxForm').submit(function(event){
+            event.preventDefault();
+            var income = parseFloat($('#netIncome').val());
+            var filingStatus = $('#filingStatus').val();
+            var tax = incomeTax(income, filingStatus);
+            $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toFixed(2) + '</p><p>' + filingStatus + ': $' + tax.toFixed(2) + '</p>');
+        });
+        
+        function incomeTax(taxableIncome, status) {
+            var tax = 0;
+            switch (status) {
+                case 'Single':
+                    if (taxableIncome <= 9700) {
+                        tax = taxableIncome * 0.1;
+                    } else if (taxableIncome <= 39475) {
+                        tax = 970 + (taxableIncome - 9700) * 0.12;
+                    } else if (taxableIncome <= 84200) {
+                        tax = 4543 + (taxableIncome - 39475) * 0.22;
+                    } else if (taxableIncome <= 160725) {
+                        tax = 14382 + (taxableIncome - 84200) * 0.24;
+                    } else if (taxableIncome <= 204100) {
+                        tax = 32748 + (taxableIncome - 160725) * 0.32;
+                    } else if (taxableIncome <= 510300) {
+                        tax = 46628 + (taxableIncome - 204100) * 0.35;
+                    } else {
+                        tax = 153798 + (taxableIncome - 510300) * 0.37;
+                    }
                     break;
-                case 'married_jointly':
-                    // Add tax calculation logic for Married Jointly filing status
+                case 'Married_Jointly':
+                    // Implement similar logic for Married Jointly filing status
+                    if (taxableIncome <= 19400) {
+                        tax = taxableIncome * 0.1;
+                    } else if (taxableIncome <= 78950) {
+                        tax = 1940 + (taxableIncome - 19400) * 0.12;
+                    } else if (taxableIncome <= 168400) {
+                        tax = 9086 + (taxableIncome - 78950) * 0.22;
+                    } else if (taxableIncome <= 321450) {
+                        tax = 28765 + (taxableIncome - 168400) * 0.24;
+                    } else if (taxableIncome <= 408200) {
+                        tax = 65497 + (taxableIncome - 321450) * 0.32;
+                    } else if (taxableIncome <= 612350) {
+                        tax = 93257 + (taxableIncome - 408200) * 0.35;
+                    } else {
+                        tax = 164709 + (taxableIncome - 612350) * 0.37;
+                    }
                     break;
-                case 'married_separately':
-                    // Add tax calculation logic for Married Separately filing status
+                case 'Married_Separately':
+                    // Implement similar logic for Married Separately filing status
+                    if (taxableIncome <= 9700) {
+                        tax = taxableIncome * 0.1;
+                    } else if (taxableIncome <= 39475) {
+                        tax = 970 + (taxableIncome - 9700) * 0.12;
+                    } else if (taxableIncome <= 84200) {
+                        tax = 4543 + (taxableIncome - 39475) * 0.22;
+                    } else if (taxableIncome <= 160725) {
+                        tax = 14382.50 + (taxableIncome - 84200) * 0.24;
+                    } else if (taxableIncome <= 204100) {
+                        tax = 32748.50 + (taxableIncome - 160725) * 0.32;
+                    } else if (taxableIncome <= 306175) {
+                        tax = 46628.50 + (taxableIncome - 204100) * 0.35;
+                    } else {
+                        tax = 82137.38 + (taxableIncome - 306175) * 0.37;
+                    }
                     break;
-                case 'head_of_household':
-                    // Add tax calculation logic for Head of Household filing status
+                case 'Head_Household':
+                    // Implement similar logic for Head of Household filing status
+                    if (taxableIncome <= 13850) {
+                        tax = taxableIncome * 0.1;
+                    } else if (taxableIncome <= 52850) {
+                        tax = 1385 + (taxableIncome - 13850) * 0.12;
+                    } else if (taxableIncome <= 84200) {
+                        tax = 6065 + (taxableIncome - 52850) * 0.22;
+                    } else if (taxableIncome <= 160700) {
+                        tax = 12962 + (taxableIncome - 84200) * 0.24;
+                    } else if (taxableIncome <= 204100) {
+                        tax = 31322 + (taxableIncome - 160700) * 0.32;
+                    } else if (taxableIncome <= 510300) {
+                        tax = 45210 + (taxableIncome - 204100) * 0.35;
+                    } else {
+                        tax = 152380 + (taxableIncome - 510300) * 0.37;
+                    }
                     break;
                 default:
                     break;
             }
-
-            // Display the result
-            const resultDiv = document.getElementById('results');
-            resultDiv.innerHTML = `<p>Net Income: $${netIncome.toFixed(2)}</p>`;
-            resultDiv.innerHTML += `<p>${filingStatus.replace('_', ' ')}: $${tax.toFixed(2)}</p>`;
+            return tax;
         }
-    </script>
-</head>
-<body>
-    <div class="container">
-        <h3>Income Tax Calculator</h3>
-        <form id="taxForm">
-            <div>
-                <label for="netIncome">Enter Net Income:</label>
-                <input type="number" id="netIncome" step="any" placeholder="Taxable Income" required autofocus>
-            </div>
-            <div>
-                <label for="filingStatus">Select Filing Status:</label>
-                <select id="filingStatus" required>
-                    <option value="single">Single</option>
-                    <option value="married_jointly">Married Jointly</option>
-                    <option value="married_separately">Married Separately</option>
-                    <option value="head_of_household">Head of Household</option>
-                </select>
-            </div>
-            <button type="button" onclick="calculateTax()">Calculate Tax</button>
-        </form>
-        <div id="results"></div>
-    </div>
+    });
+</script>
 </body>
 </html>
