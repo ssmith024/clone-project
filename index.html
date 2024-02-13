@@ -43,25 +43,156 @@
         <thead>
             <tr>
                 <th>Filing Status</th>
-                <th>Income Tax</th>
+                <th>Income Range</th>
+                <th>Tax Rate</th>
+                <th>Minimum Tax</th>
             </tr>
         </thead>
         <tbody>
             <tr>
-                <td>Single</td>
-                <td id="singleTax"></td>
+                <td rowspan="7">Single</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
             </tr>
             <tr>
-                <td>Married Jointly</td>
-                <td id="marriedJointlyTax"></td>
+                <td>$0.00 - $9,700.00</td>
+                <td>12%</td>
+                <td>$970.00</td>
             </tr>
             <tr>
-                <td>Married Separately</td>
-                <td id="marriedSeparatelyTax"></td>
+                <td>$9,700.00 - $39,475.00</td>
+                <td>22%</td>
+                <td>$4,543.00</td>
             </tr>
             <tr>
-                <td>Head of Household</td>
-                <td id="headHouseholdTax"></td>
+                <td>$39,475.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$14,382.00</td>
+            </tr>
+            <tr>
+                <td>$84,200.00 - $160,725.00</td>
+                <td>32%</td>
+                <td>$32,748.00</td>
+            </tr>
+            <tr>
+                <td>$160,725.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$46,628.00</td>
+            </tr>
+            <tr>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$153,798.00</td>
+            </tr>
+            <!-- Rows for Married Jointly, Married Separately, and Head of Household statuses -->
+            <tr>
+                <td rowspan="7">Married Jointly</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>$0.00 - $19,400.00</td>
+                <td>12%</td>
+                <td>$1,940.00</td>
+            </tr>
+            <tr>
+                <td>$19,400.00 - $78,950.00</td>
+                <td>22%</td>
+                <td>$9,086.00</td>
+            </tr>
+            <tr>
+                <td>$78,950.00 - $168,400.00</td>
+                <td>24%</td>
+                <td>$28,765.00</td>
+            </tr>
+            <tr>
+                <td>$168,400.00 - $321,450.00</td>
+                <td>32%</td>
+                <td>$65,497.00</td>
+            </tr>
+            <tr>
+                <td>$321,450.00 - $408,200.00</td>
+                <td>35%</td>
+                <td>$93,257.00</td>
+            </tr>
+            <tr>
+                <td>Over $408,200.00</td>
+                <td>37%</td>
+                <td>$164,709.00</td>
+            </tr>
+            <tr>
+                <td rowspan="7">Married Separately</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>$0.00 - $9,700.00</td>
+                <td>12%</td>
+                <td>$970.00</td>
+            </tr>
+            <tr>
+                <td>$9,700.00 - $39,475.00</td>
+                <td>22%</td>
+                <td>$4,543.00</td>
+            </tr>
+            <tr>
+                <td>$39,475.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$14,382.50</td>
+            </tr>
+            <tr>
+                <td>$84,200.00 - $160,725.00</td>
+                <td>32%</td>
+                <td>$32,748.50</td>
+            </tr>
+            <tr>
+                <td>$160,725.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$46,628.50</td>
+            </tr>
+            <tr>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$82,354.75</td>
+            </tr>
+            <tr>
+                <td rowspan="7">Head of Household</td>
+                <td>Up to $0.00</td>
+                <td>10%</td>
+                <td>$0.00</td>
+            </tr>
+            <tr>
+                <td>$0.00 - $13,850.00</td>
+                <td>12%</td>
+                <td>$1,385.00</td>
+            </tr>
+            <tr>
+                <td>$13,850.00 - $52,850.00</td>
+                <td>22%</td>
+                <td>$6,065.00</td>
+            </tr>
+            <tr>
+                <td>$52,850.00 - $84,200.00</td>
+                <td>24%</td>
+                <td>$12,962.00</td>
+            </tr>
+            <tr>
+                <td>$84,200.00 - $160,700.00</td>
+                <td>32%</td>
+                <td>$31,322.00</td>
+            </tr>
+            <tr>
+                <td>$160,700.00 - $204,100.00</td>
+                <td>35%</td>
+                <td>$45,210.00</td>
+            </tr>
+            <tr>
+                <td>Over $204,100.00</td>
+                <td>37%</td>
+                <td>$152,380.00</td>
             </tr>
         </tbody>
     </table>
@@ -77,6 +208,13 @@
             var tax = incomeTax(income, filingStatus);
             $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toFixed(2) + '</p><p>' + filingStatus + ': $' + tax.toFixed(2) + '</p>');
         });
+        
+        function incomeTax(taxableIncome, status) {
+            // Implement tax calculation logic here
+            // This function should return the calculated tax amount based on the income and filing status
+            // Example usage: return the calculated tax amount
+        }
+    });
             <!-- Rows for Single filing status -->
             <tr>
                 <td>Single</td>
