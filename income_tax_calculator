@@ -235,7 +235,7 @@
                     } else {
                         return 153798 + (taxableIncome - 510300) * 0.37;
                     }
-                case 'Married_Jointly':
+                case 'Married Jointly':
                     if (taxableIncome <= 19400) {
                         return taxableIncome * 0.10;
                     } else if (taxableIncome <= 78950) {
@@ -251,7 +251,7 @@
                     } else {
                         return 164709 + (taxableIncome - 612350) * 0.37;
                     }
-                case 'Married_Separately':
+                case 'Married Separately':
                     if (taxableIncome <= 9700) {
                         return taxableIncome * 0.10;
                     } else if (taxableIncome <= 39475) {
@@ -267,7 +267,7 @@
                     } else {
                         return 82137.38 + (taxableIncome - 306175) * 0.37;
                     }
-                case 'Head_Household':
+                case 'Head of Household':
                     if (taxableIncome <= 13850) {
                         return taxableIncome * 0.10;
                     } else if (taxableIncome <= 52850) {
