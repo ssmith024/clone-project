@@ -50,12 +50,13 @@
         </thead>
         <tbody>
             <tr>
-                <td rowspan="7">Single</td>
+                <td>Single</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
             </tr>
             <tr>
+                <td rowspan="6"></td>
                 <td>$0.00 - $9,700.00</td>
                 <td>12%</td>
                 <td>$970.00</td>
@@ -87,12 +88,13 @@
             </tr>
             <!-- Rows for Married Jointly, Married Separately, and Head of Household statuses -->
             <tr>
-                <td rowspan="1">Married Jointly</td>
+                <td>Married Jointly</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
             </tr>
             <tr>
+                <td rowspan="6"></td>
                 <td>$0.00 - $19,400.00</td>
                 <td>12%</td>
                 <td>$1,940.00</td>
@@ -123,12 +125,13 @@
                 <td>$164,709.00</td>
             </tr>
             <tr>
-                <td rowspan="1">Married Separately</td>
+                <td>Married Separately</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
             </tr>
             <tr>
+                <td rowspan="6"></td>
                 <td>$0.00 - $9,700.00</td>
                 <td>12%</td>
                 <td>$970.00</td>
@@ -159,12 +162,13 @@
                 <td>$82,354.75</td>
             </tr>
             <tr>
-                <td rowspan="1">Head of Household</td>
+                <td>Head of Household</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
             </tr>
             <tr>
+                <td rowspan="6"></td>
                 <td>$0.00 - $13,850.00</td>
                 <td>12%</td>
                 <td>$1,385.00</td>
@@ -208,7 +212,6 @@
             var tax = incomeTax(income, filingStatus);
             $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toFixed(2) + '</p><p>' + filingStatus + ': $' + tax.toFixed(2) + '</p>');
         });
-        
         function incomeTax(taxableIncome, status) {
             if (status === 'Single') {
                 if (taxableIncome <= 9700) {
