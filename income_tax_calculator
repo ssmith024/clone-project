@@ -49,9 +49,8 @@
             </tr>
         </thead>
         <tbody>
-            <!-- Tax table rows will be dynamically populated here -->
             <tr>
-                <td>Single</td>
+                <td rowspan="7">Single</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
@@ -86,11 +85,9 @@
                 <td>37%</td>
                 <td>$153,798.00</td>
             </tr>
-
             <!-- Rows for Married Jointly, Married Separately, and Head of Household statuses -->
-    
             <tr>
-                <td>Married Jointly</td>
+                <td rowspan="1">Married Jointly</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
@@ -126,7 +123,7 @@
                 <td>$164,709.00</td>
             </tr>
             <tr>
-                <td>Married Separately</td>
+                <td rowspan="1">Married Separately</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
@@ -162,7 +159,7 @@
                 <td>$82,354.75</td>
             </tr>
             <tr>
-                <td>Head of Household</td>
+                <td rowspan="1">Head of Household</td>
                 <td>Up to $0.00</td>
                 <td>10%</td>
                 <td>$0.00</td>
