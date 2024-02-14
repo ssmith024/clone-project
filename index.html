@@ -200,14 +200,19 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
-    $(document).ready(function(){
+ $(document).ready(function(){
     $('#taxForm').submit(function(event){
         event.preventDefault();
         var income = parseFloat($('#netIncome').val());
         var filingStatus = $('#filingStatus').val();
         var tax = incomeTax(income, filingStatus);
-        $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</p><p>' + filingStatus + ': $' + tax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</p>');
+        $('#results').html('<h4>Results</h4><p>Net Income: $' + formatCurrency(income) + '</p><p>' + filingStatus + ': $' + formatCurrency(tax) + '</p>');
     });
+    
+    function formatCurrency(amount) {
+        return amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
         function incomeTax(taxableIncome, status) {
             var tax = 0;
             switch (status) {
