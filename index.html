@@ -201,13 +201,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script>
     $(document).ready(function(){
-        $('#taxForm').submit(function(event){
-            event.preventDefault();
-            var income = parseFloat($('#netIncome').val());
-            var filingStatus = $('#filingStatus').val();
-            var tax = incomeTax(income, filingStatus);
-            $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toFixed(2) + '</p><p>' + filingStatus + ': $' + tax.toFixed(2) + '</p>');
-        });
+    $('#taxForm').submit(function(event){
+        event.preventDefault();
+        var income = parseFloat($('#netIncome').val());
+        var filingStatus = $('#filingStatus').val();
+        var tax = incomeTax(income, filingStatus);
+        $('#results').html('<h4>Results</h4><p>Net Income: $' + income.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</p><p>' + filingStatus + ': $' + tax.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + '</p>');
+    });
         function incomeTax(taxableIncome, status) {
             var tax = 0;
             switch (status) {
